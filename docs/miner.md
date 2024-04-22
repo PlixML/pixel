@@ -52,7 +52,7 @@ docker compose up --detach
 
 # Running the Miner
 
-The mining script uploads a model to 🤗 Hugging Face which will be evaluated by validators.
+There is no script to run a miner. You must train a model using `pixel dataset generate` and `pixel model train sdxl`.
 
 See [Validator Psuedocode](docs/validator.md#validator) for more information on how they the evaluation occurs.
 
@@ -60,52 +60,55 @@ See [Validator Psuedocode](docs/validator.md#validator) for more information on 
 
 The Miner requires a .env file with your 🤗 Hugging Face access token in order to upload models.
 
-Create a `.env` file in the `finetuning-subnet` directory and add the following to it:
+Create a `.env` file in the `pixel` directory and add the following to it:
 ```shell
 HF_ACCESS_TOKEN="YOUR_HF_ACCESS_TOKEN"
 ```
 
-## Starting the Miner
+## Generate a dataset
 
 To start your miner the most basic command is
 
 ```shell
-python neurons/miner.py --wallet.name coldkey --wallet.hotkey hotkey --hf_repo_id my-username/my-project --avg_loss_upload_threshold YOUR_THRESHOLD
+pixel dataset generate
 ```
 
-- `--wallet.name`: should be the name of the coldkey that contains the hotkey your miner is registered with.
+- `Number of samples`: Number of 2048x2048 x4 images to download from subnet 19
 
-- `--wallet.hotkey`: should be the name of the hotkey that your miner is registered with.
+- `Midjourney Version`: Midjourney dataset version.
 
-- `--hf_repo_id`: should be the namespace/model_name that matches the hugging face repo you want to upload to. Must be public so that the validators can download from it.
+- `Preprocessing the images`: Create a folder ready for training with pixel model train
 
-- `--avg_loss_upload_threshold`: should be the minimum average loss before you want your miner to upload the model.
+---
+## Train an SDXL model
 
-- `--competition_id`: competition you wish to mine for; run `--list_competitions` to get a list of available competitions
+To start your miner the most basic command is
 
-
-### Flags
-
-The Miner offers some flags to customize properties, such as how to train the model and which hugging face repo to upload to.
-
-You can view the full set of flags by running
 ```shell
-python ./neurons/miner.py -h
+accelerate launch scripts/train_diffusion_sdxl.py \\
+            --pretrained_model_name_or_path stabilityai/stable-diffusion-xl-base-1.0 \\
+            --train_data_dir preprocessed_images \\
+            --image_column image \\
+            --caption_column text \\
+            --learning_rate 2e-6 \\
+            --noise_offset 0.1 \\
+            --snr_gamma 5
+
 ```
 
-Some flags you may find useful:
+- `pretrained_model_name_or_path`: SDXL Model (Take the best model of the subnet)
 
-- `--offline`: when set you can run the miner without being registered and it will not attempt to upload the model.
+- `train_data_dir`: Folder where you generated the datasets
 
-- `--wandb_entity` + `--wandb_project`: when both flags are set the miner will log its training to the provided wandb project.
+- `image_column`: image column in metadata.csv file
 
-- `--device`: by default the miner will use your gpu but you can specify with this flag if you have multiple.
+- `caption_column`: caption column in metadata.csv file
 
-#### Training from pre-existing models
+- `learning_rate`: Learning rate
 
-- `--load_best`: when set you will download and train the model from the current best miner on the network.
-- `--load_uid`: when passing a uid you will download and train the model from the matching miner on the network.
-- `--load_model_dir`: the path to a local model directory [saved via Hugging Face API].
+- `noise_offset`: Noise_offset https://www.crosslabs.org//blog/diffusion-with-offset-noise
+
+- `snr_gamma`: Min-SNR value [caption column in metadata.csv file](https://huggingface.co/papers/2303.09556)
 
 ---
 
