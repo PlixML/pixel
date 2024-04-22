@@ -120,7 +120,7 @@ Due to rate limiting by the Bittensor chain you may only upload a model every 20
 
 You can manually upload with the following command:
 ```shell
-python scripts/upload_model.py --load_model_dir <path to model> --hf_repo_id my-username/my-project --wallet.name coldkey --wallet.hotkey hotkey
+python scripts/upload_model.py --load_model_dir <path to model> --hf_repo_id my-username/my-project --wallet.name coldkey --wallet.hotkey hotkey --competition_id m6
 ```
 
 ## Running a custom Miner
