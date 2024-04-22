@@ -46,7 +46,7 @@ TL;DR:
 1. [Chat](https://discord.gg/bittensor)
 2. [Leaderboard](https://huggingface.co/spaces/PlixAI/pixel-subnet-leaderboard)
 
-This repo's main conversation is carried out in the Bittensor [Discord](https://discord.gg/bittensor). Visit the 'finetuning' channel to ask questions and get real time feedback. You can view the ongoing running of the incentive mechanism, the best miners (see 'incentive'), the most in-consensus validators (see 'vtrust') using this [taostats link](https://taostats.io/subnets/netuid-17/). The table shows all 256 participant UIDs with corresponding YC stats and earnings. 
+This repo's main conversation is carried out in the Bittensor [Discord](https://discord.gg/bittensor). Visit the 'rho・17' channel to ask questions and get real time feedback. You can view the ongoing running of the incentive mechanism, the best miners (see 'incentive'), the most in-consensus validators (see 'vtrust') using this [taostats link](https://taostats.io/subnets/netuid-17/). The table shows all 256 participant UIDs with corresponding YC stats and earnings. 
 
 See [Miner Setup](docs/miner.md#getting-started) to learn how to setup a Miner.
 
