@@ -17,7 +17,7 @@
 # DEALINGS IN THE SOFTWARE.
 
 # Tools for performing validation over models.
-
+import shutil
 from contextlib import nullcontext
 from pathlib import Path
 import typing
@@ -236,7 +236,7 @@ def compute_losses(model_id="stabilityai/stable-diffusion-xl-base-1.0", model_co
         mixed_precision="fp16"
     )
     CACHE_DIR = "/pixel_folder/cache"
-    os.rmdir(CACHE_DIR)
+    shutil.rmtree(CACHE_DIR)
     os.makedirs(CACHE_DIR)
     # Make one log on every process with the configuration for debugging.
     logging.basicConfig(
