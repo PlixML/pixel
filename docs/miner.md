@@ -85,14 +85,15 @@ pixel dataset generate
 To start your miner the most basic command is
 
 ```shell
-accelerate launch scripts/train_diffusion_sdxl.py \\
-            --pretrained_model_name_or_path stabilityai/stable-diffusion-xl-base-1.0 \\
-            --train_data_dir preprocessed_images \\
-            --image_column image \\
-            --caption_column text \\
-            --learning_rate 2e-6 \\
-            --noise_offset 0.1 \\
-            --snr_gamma 5
+accelerate launch scripts/train_diffusion_sdxl.py \
+            --pretrained_model_name_or_path stabilityai/stable-diffusion-xl-base-1.0 \
+            --train_data_dir preprocessed_images \
+            --image_column image \
+            --caption_column text \
+            --learning_rate 2e-6 \
+            --noise_offset 0.1 \
+            --snr_gamma 5 \
+            --train_batch_size 1
 
 ```
 
@@ -109,6 +110,8 @@ accelerate launch scripts/train_diffusion_sdxl.py \\
 - `noise_offset`: Noise_offset https://www.crosslabs.org//blog/diffusion-with-offset-noise
 
 - `snr_gamma`: Min-SNR value [caption column in metadata.csv file](https://huggingface.co/papers/2303.09556)
+
+- `train_batch_size`: Train Batch Size. Increase it if your GPU supports it
 
 ---
 
