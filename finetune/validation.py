@@ -235,7 +235,9 @@ def compute_losses(model_id="stabilityai/stable-diffusion-xl-base-1.0", model_co
     accelerator = Accelerator(
         mixed_precision="fp16"
     )
-
+    CACHE_DIR = "/pixel_folder/cache"
+    os.rmdir(CACHE_DIR)
+    os.makedirs(CACHE_DIR)
     # Make one log on every process with the configuration for debugging.
     logging.basicConfig(
         format="%(asctime)s - %(levelname)s - %(name)s - %(message)s",
@@ -331,7 +333,7 @@ def compute_losses(model_id="stabilityai/stable-diffusion-xl-base-1.0", model_co
     dataset = load_dataset(
         "imagefolder",
         data_files=data_files,
-        cache_dir="/pixel_folder/cache",
+        cache_dir=CACHE_DIR,
     )
     # Preprocessing the datasets.
     # We need to tokenize inputs and targets.
