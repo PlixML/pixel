@@ -94,7 +94,7 @@ accelerate launch scripts/train_diffusion_sdxl.py \
             --noise_offset 0.1 \
             --snr_gamma 5 \
             --train_batch_size 1 \
-            --num_epochs 10
+            --num_train_epochs 10
 
 ```
 
