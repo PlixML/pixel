@@ -54,7 +54,7 @@ docker compose up --detach
 
 There is no script to run a miner. You must train a model using `pixel dataset generate` and `pixel model train sdxl`.
 
-See [Validator Psuedocode](docs/validator.md#validator) for more information on how they the evaluation occurs.
+See [Validator Psuedocode](validator.md#validator) for more information on how they the evaluation occurs.
 
 ## Env File
 
