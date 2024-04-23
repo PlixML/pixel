@@ -93,7 +93,8 @@ accelerate launch scripts/train_diffusion_sdxl.py \
             --learning_rate 2e-6 \
             --noise_offset 0.1 \
             --snr_gamma 5 \
-            --train_batch_size 1
+            --train_batch_size 1 \
+            --num_epochs 10
 
 ```
 
