@@ -61,6 +61,7 @@ from torchvision import transforms
 from torchvision.transforms.functional import crop
 from tqdm.auto import tqdm
 from transformers import AutoTokenizer, PretrainedConfig
+import bitsandbytes as bnb
 
 import diffusers
 from diffusers import AutoencoderKL, DDPMScheduler, StableDiffusionXLPipeline, UNet2DConditionModel
@@ -316,7 +317,7 @@ def compute_losses(model_id="stabilityai/stable-diffusion-xl-base-1.0", model_co
             del load_model
 
     accelerator.register_load_state_pre_hook(load_model_hook)
-    optimizer_class = torch.optim.AdamW
+    optimizer_class = bnb.optim.AdamW8bit
 
     # Optimizer creation
     params_to_optimize = unet.parameters()
