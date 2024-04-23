@@ -53,7 +53,7 @@ It is important to note that this affects the game theoretics of the incentive l
 
 Validators will need enough disk space to store the model of every miner in the subnet. Each model is limited to 6 GB and 2.5B parameters, and the validator has cleanup logic to remove old models. It is recommended to have at least 3 TB of disk space.
 
-Validators will need enough processing power to evaluate their model. It is required to have a GPU with atleast 48 GB of VRAM, A100 is recommended.
+Validators will need enough processing power to evaluate their model. It is required to have a GPU with atleast 48 GB of VRAM.
 
 # Getting Started
 
