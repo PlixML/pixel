@@ -527,7 +527,7 @@ class Validator:
         pull_data_perf = PerfMonitor("Eval: Pull data")
         with pull_data_perf.sample():
             loader = ft.dataset.VisionSubsetLoader(max_samples=self.config.vision_samples, version=self.config.vision_version)
-            loader.process_sync(path=constants.CACHE_DIR_DATASET, erase_dir=True)
+            loader.process_sync(path=self.config.model_dir+"/imgs", erase_dir=True)
 
         # Prepare evaluation
 
@@ -590,7 +590,7 @@ class Validator:
                             )
 
                             losses = ft.validation.compute_losses(
-                                model_id=pretrained_model_name_or_path, model_commit=commit, dataset_folder=constants.CACHE_DIR_DATASET, do_sample=True if self.config.do_sample else False
+                                model_id=pretrained_model_name_or_path, model_commit=commit, dataset_folder=self.config.model_dir, cache_dir=self.config.model_dir, do_sample=True if self.config.do_sample else False
                             )
                             
 

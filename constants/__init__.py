@@ -34,7 +34,6 @@ class CompetitionParameters:
 # Project Constants.
 # ---------------------------------
 
-CACHE_DIR_DATASET = "/pixel/cache_dataset"
 # The validator WANDB project.
 WANDB_PROJECT = "pixel-subnet"
 # The uid for this subnet.

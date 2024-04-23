@@ -229,14 +229,19 @@ def compute_wins(
     return wins, win_rate
 
 
-def compute_losses(model_id="stabilityai/stable-diffusion-xl-base-1.0", model_commit=None, dataset_folder="./preprocessed_images", do_sample=False):
+def compute_losses(model_id="stabilityai/stable-diffusion-xl-base-1.0", model_commit=None, dataset_folder="./preprocessed_images", cache_dir="./cache-folder", do_sample=False):
     images = None
     losses = []
     accelerator = Accelerator(
         mixed_precision="fp16"
     )
-    CACHE_DIR = "/pixel_folder/cache"
-    shutil.rmtree(CACHE_DIR)
+    CACHE_DIR = cache_dir + "/cache_dataset"
+
+    # Check if the directory exists before removing it
+    if os.path.exists(CACHE_DIR):
+        shutil.rmtree(CACHE_DIR)
+
+    # Create the directory
     os.makedirs(CACHE_DIR)
     # Make one log on every process with the configuration for debugging.
     logging.basicConfig(
