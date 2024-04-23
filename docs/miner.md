@@ -128,7 +128,7 @@ python scripts/upload_model.py --load_model_dir <path to model> --hf_repo_id my-
 
 ## Running a custom Miner
 
-As of March 1st, 2024 the subnet works with mistral models supported by [LlamaForCausalLM](https://huggingface.co/docs/transformers/v4.37.2/en/model_doc/llama2#transformers.LlamaForCausalLM) or the Gemma model subject to the following constraints:
+As of April 1st, 2024 the subnet works with SDXL models supported by constraints:
 1. Has less than 2.5B parameters.
 2. Total size of the repo is less than 6 Gigabytes.
 The `finetune/mining.py` file has several methods that you may find useful. Example below.
