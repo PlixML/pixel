@@ -7,7 +7,7 @@ pydantic==1.10
 python-dotenv
 rich
 safetensors
-torch
+torch==2.2.2
 transformers==4.38.2
 wandb
 sentencepiece
