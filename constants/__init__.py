@@ -1,6 +1,6 @@
 from pathlib import Path
 from dataclasses import dataclass
-from transformers import PreTrainedModel, LlamaForCausalLM, GemmaForCausalLM, StableLmForCausalLM
+from transformers import PreTrainedModel
 from typing import Type, Optional, Any, List, Tuple
 from diffusers import StableDiffusionXLPipeline, UNet2DConditionModel, AutoencoderKL
 import math
